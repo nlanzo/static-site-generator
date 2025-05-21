@@ -19,7 +19,7 @@ class TestHTMLNode(unittest.TestCase):
     def test_repr(self):
         node = HTMLNode("h1", "Title", HTMLNode("p", "hello"), {"href": "https://www.google.com", "alt": "google link"})
         repr = node.__repr__()
-        correct_repr = "HTMLNode(h1, Title, HTMLNode(p, hello, None, None), {'href': 'https://www.google.com', 'alt': 'google link'})"
+        correct_repr = "HTMLNode(h1, Title, children: HTMLNode(p, hello, children: None, props: None), props: {'href': 'https://www.google.com', 'alt': 'google link'})"
         self.assertEqual(repr, correct_repr)
 
 
@@ -81,3 +81,6 @@ class TestParentNode(unittest.TestCase):
             node.to_html(),
             "<h2><b>Bold text</b>Normal text<i>italic text</i>Normal text</h2>",
         )
+
+if __name__ == "__main__":
+    unittest.main()
