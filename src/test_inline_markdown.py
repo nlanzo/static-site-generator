@@ -103,7 +103,40 @@ class TestInlineMarkdownImagesAndLinks(unittest.TestCase):
             matches,
         )
 
+    def test_extract_markdown_links_but_not_images(self):
+        matches = extract_markdown_links(
+            "This is text with a [link](https://boot.dev) and ![image](https://i.imgur.com/zjjcJKZ.png)"
+        )
+        self.assertListEqual(
+            [
+                ("link", "https://boot.dev")
+            ],
+            matches,
+        )
 
+    def test_extract_markdown_images_but_not_links(self):
+        matches = extract_markdown_images(
+            "This is text with a [link](https://boot.dev) and ![image](https://i.imgur.com/zjjcJKZ.png)"
+        )
+        self.assertListEqual(
+            [
+                ("image", "https://i.imgur.com/zjjcJKZ.png"),
+            ],
+            matches,
+        )
+
+    def test_extract_markdown_links_with_text(self):
+        matches = extract_markdown_links(
+            "This is text with a [link](https://boot.dev) and [another link](https://blog.boot.dev) and [link with text](https://boot.dev/about)"
+        )
+        self.assertListEqual(
+            [
+                ("link", "https://boot.dev"),
+                ("another link", "https://blog.boot.dev"),
+                ("link with text", "https://boot.dev/about"),
+            ],
+            matches,
+        )
 
 
 if __name__ == "__main__":
