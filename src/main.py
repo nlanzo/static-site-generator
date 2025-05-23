@@ -1,11 +1,24 @@
+import os
+import shutil
+from copystatic import copy_from_static_to_public
 from textnode import TextNode, TextType
 from htmlnode import HTMLNode
 
-def main():
-    text_node = TextNode("test test test", TextType.BOLD, "www.internet.com")
-    print(text_node)
 
-    html_node = HTMLNode("h1", "Title", HTMLNode("p", "hello"), props={"href": "https://www.google.com"})
-    print(html_node)
+dir_path_public = "../public"
+dir_path_static = "../static"
+
+def main():
+    print("Deleting public directory")
+    if os.path.exists(dir_path_public):
+        shutil.rmtree(dir_path_public)
+    print("Copying from files from static to public")
+    copy_from_static_to_public(dir_path_static, dir_path_public)
+    print("Done")
+    pass
+
+
+
+
     
 main()
