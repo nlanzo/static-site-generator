@@ -12,10 +12,10 @@ dir_path_static = "./static"
 
 content_path = "./content"
 template_path = "./template.html"
-dest_path = "./public"
+dest_path = "./docs"
 
 def main():
-    basepath = sys.argv[0]
+    basepath = sys.argv[1]
     print("Deleting public directory")
     if os.path.exists(dir_path_public):
         shutil.rmtree(dir_path_public)
