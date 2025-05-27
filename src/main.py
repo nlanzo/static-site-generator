@@ -12,18 +12,18 @@ dir_path_static = "./static"
 
 content_path = "./content"
 template_path = "./template.html"
-dest_path = "./docs"
+
 
 def main():
     basepath = sys.argv[1]
     print("Deleting public directory")
     if os.path.exists(dir_path_public):
         shutil.rmtree(dir_path_public)
-    print("Copying files from static to public")
+    print(f"Copying files from {dir_path_static} to {dir_path_public}")
     copy_from_static_to_public(dir_path_static, dir_path_public)
-    print("Done")
+    print(f"Done")
 
-    generate_pages_recursive(content_path, template_path, dest_path, basepath)
+    generate_pages_recursive(content_path, template_path, dir_path_public, basepath)
 
     
 
