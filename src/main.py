@@ -2,8 +2,6 @@ import sys
 import os
 import shutil
 from copystatic import copy_from_static_to_public
-from textnode import TextNode, TextType
-from htmlnode import HTMLNode
 from generate_page import generate_pages_recursive
 
 
